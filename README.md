@@ -1,6 +1,6 @@
-# Photoshop Export - Substance 3D Painter plugin
+# Photoshop Export Modified by Rizum - Substance 3D Painter plugin
 
-This plugin adds an __Export To Photoshop__ button to the Send To menu of Substance 3D Painter. The export action creates one Photoshop document for each channel of each stack of the Substance 3D Painter document, preserving the stack hierarchy (layers and groups). Unfortunately, blending modes and filters are not fully compatible between Photoshop and Substance 3D Painter, hence the final result can be different between the two softwares.
+This plugin is orinally from the Substance 3D Painter's Photoshop Export plugin modified by Rizum, it added an option to specify dilation amount when padding is turn off, and remove the color correction from the original script that was changing the original colors of the layers.
 
 ## Installation
 
