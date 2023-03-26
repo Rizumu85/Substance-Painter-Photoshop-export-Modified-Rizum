@@ -1,7 +1,7 @@
 {
-  "description": "This plugin is orinally from the Substance 3D Painter's Photoshop Export plugin modified by Rizum, it added an option to specify dilation amount when padding is turn off, and remove the color correction from the original script that was changing the original colors of the layers ",
+  "description": "This plugin is a modified version of the official Substance painter to Photoshop plugin by Rizum, which added a dilation option from 0-10, and removed the color correction of the original script that was causing in distorted colors.",
   "url": "https://github.com/AllegorithmicSAS/painter-plugin-photoshop-export",
-  "version": "1.1.6.1",
+  "version": "1.1.6..1",
   "license": "<a href=\"https://opensource.org/licenses/MIT\">MIT</a>",
   "min_api_version": "1.1.16"
 }

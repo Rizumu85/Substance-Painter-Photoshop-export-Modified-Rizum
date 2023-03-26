@@ -190,6 +190,11 @@ PhotoshopExporter.prototype = {
             this.photoshopScript += this.newFillLayerStr("Background", {R:128, G:128, B:255});
             this.photoshopScript += "app.activeDocument.activeLayer.move(app.activeDocument, ElementPlacement.PLACEATEND); \n";
           }
+          //Move the snapshot to the document head
+          this.photoshopScript += "snapshot.move(app.activeDocument, ElementPlacement.PLACEATBEGINNING); \n";
+          this.photoshopScript += "app.activeDocument.activeLayer = snapshot; \n";
+          //Hide the snapshot
+          this.photoshopScript += "snapshot.visible = false; \n";
           //Save the psd
           this.photoshopScript += " app.activeDocument.saveAs(File(\"" + this.createFilename() + "\")); \n";
         }

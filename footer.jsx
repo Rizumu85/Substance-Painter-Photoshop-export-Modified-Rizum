@@ -221,6 +221,19 @@ function layerToMask()
 	desc_deselect.putEnumerated(idT, idOrdn, idNone);
 	executeAction(idsetd, desc_deselect, DialogModes.NO);
 }
+function applyLayerMask() 
+{
+    var idapplyLayerMask = charIDToTypeID("GrpL");
+    var desc_applyLayerMask = new ActionDescriptor();
+    var idnull = charIDToTypeID("null");
+    var ref_applyLayerMask = new ActionReference();
+    var idLyr = charIDToTypeID("Lyr ");
+    var idOrdn = charIDToTypeID("Ordn");
+    var idTrgt = charIDToTypeID("Trgt");
+    ref_applyLayerMask.putEnumerated(idLyr, idOrdn, idTrgt);
+    desc_applyLayerMask.putReference(idnull, ref_applyLayerMask);
+    executeAction(idapplyLayerMask, desc_applyLayerMask, DialogModes.NO);
+}
 function Overlay_Normal(enabled, withDialog)
 {
 	try {
