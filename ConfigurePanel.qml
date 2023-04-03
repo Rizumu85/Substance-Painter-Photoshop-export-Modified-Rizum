@@ -10,9 +10,9 @@ AlgDialog {
   visible: false
   title: "configure"
   width: 500
-  height: 260
+  height: defaultHeight
+  property int defaultHeight: 280
   minimumWidth: 400
-  minimumHeight: 220
 
   function reload() {
     content.reload()
@@ -24,8 +24,8 @@ AlgDialog {
 		}
 		alg.settings.setValue("launchPhotoshop", launchPhotoshopCheckBox.checked);
 		alg.settings.setValue("padding", paddingCheckBox.checked);
-        var indexDilation = dilationComboBox.currentIndex;
-        alg.settings.setValue("dilation", dilationModel.get(indexDilation).value);
+    alg.settings.setValue("dilation", dilationSlider.value);
+
         var index = bitDepthComboBox.currentIndex
         alg.settings.setValue("bitDepth", bitDepthModel.get(index).value);
   }
@@ -42,7 +42,7 @@ AlgDialog {
       path.reload()
       launchPhotoshopCheckBox.reload()
       paddingCheckBox.reload()
-      dilationComboBox.reload()
+      dilationSlider.reload()
       bitDepthComboBox.reload()
     }
 
@@ -134,51 +134,43 @@ AlgDialog {
             Component.onCompleted: {
               reload()
             }
+
+            onCheckedChanged: {
+            dilationGroup.toggled = !checked;
+            dilationGroup.visible = !checked;
+            }
           }
         }
 
-        RowLayout {
-          spacing: 6
+        AlgGroupWidget {
+          id: dilationGroup
+          text: qsTr("Export dilation")
+          toggled: !paddingCheckBox.checked
           Layout.fillWidth: true
+          visible: !paddingCheckBox.checked
 
-          AlgLabel {
-            text: qsTr("Export dilation (Padding off)")
+          RowLayout {
+            spacing: 6
             Layout.fillWidth: true
-          }
 
-          AlgComboBox {
-            id:dilationComboBox
-            textRole: "opt"
-            Layout.minimumWidth: 150
+            AlgSlider {
+              id: dilationSlider
+              value: 0
+              minValue: 0
+              maxValue: 256
+              precision: 0
+              Layout.minimumHeight: 20
+              Layout.fillWidth: true
+              text: "Dilation(pixels)"
 
-            model: ListModel {
-              id: dilationModel
-              ListElement { opt: "0"; value: 0 }
-              ListElement { opt: "1"; value: 1 }
-              ListElement { opt: "2"; value: 2 }
-              ListElement { opt: "3"; value: 3 }
-              ListElement { opt: "4"; value: 4 }
-              ListElement { opt: "5"; value: 5 }
-              ListElement { opt: "6"; value: 6 }
-              ListElement { opt: "7"; value: 7 }
-              ListElement { opt: "8"; value: 8 }
-              ListElement { opt: "9"; value: 9 }
-              ListElement { opt: "10"; value: 10 }
-            }
+              function reload() {
+                var dilation = alg.settings.value("dilation", 0);
+                value = dilation;
+              }
 
-            function reload() {
-              var dilation = alg.settings.value ("dilation", 0);
-              for (var i = 0; i < dilationModel.count; ++i){
-                var current = dilationModel.get(i);
-                if (dilation === current.value){
-                  currentIndex = i;
-                  break
-                }
-              } 
-            }
-
-            Component.onCompleted: {
-              reload()
+              Component.onCompleted: {
+                reload()
+              }
             }
           }
         }
@@ -218,6 +210,7 @@ AlgDialog {
             }
           }
         }
+
       }
     }
   }
@@ -236,4 +229,17 @@ AlgDialog {
       }
     }
   }
+
+  Binding {
+    target: configureDialog
+    property: "height"
+    value: paddingCheckBox.checked ? configureDialog.defaultHeight - 50 : configureDialog.defaultHeight + (dilationGroup.toggled ? 30 : 0)
+  }
+
+  Binding {
+    target: configureDialog
+    property: "height"
+    value: dilationGroup.toggled ? configureDialog.defaultHeight + 30 : configureDialog.defaultHeight
+  }
+
 }

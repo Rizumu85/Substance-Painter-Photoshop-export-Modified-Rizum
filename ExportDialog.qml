@@ -9,7 +9,7 @@ import "photoshop.js" as Photoshop
 
 AlgDialog {
     width: 400
-    height: 300
+    height: 800
     minimumWidth: 400
     minimumHeight: 300
     defaultButtonText: "Ok"

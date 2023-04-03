@@ -19,7 +19,7 @@ PainterPlugin {
 				alg.settings.setValue("launchPhotoshop", false);
 		 	}
 		 	alg.settings.setValue("padding", false);
-			alg.setting.setValue("dilation", 0);
+			alg.settings.setValue("dilation", 0);
 		}
 		var sendtoAction = alg.ui.addAction(alg.ui.AppMenu.SendTo, qsTr("Export to Photoshop by Rizum"), qsTr("Export to Photoshop by Rizum"), Qt.resolvedUrl("icons/RizumPhotoshop_idle.svg"), Qt.resolvedUrl("icons/RizumPhotoshop_idle.svg"));
 		sendtoAction.triggered.connect(internal.sendToTriggered);
