@@ -284,8 +284,7 @@ PhotoshopExporter.prototype = {
    var maskFile = File(\"" + filename + "\"); \n\
    open_png(maskFile); \n\
    maskFile.remove(); \n\
-   layerToMask(); \n\
-   applyLayerMask();";
+   layerToMask();";
   },
 
   /*

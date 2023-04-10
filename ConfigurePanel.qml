@@ -168,6 +168,10 @@ AlgDialog {
                 value = dilation;
               }
 
+              onValueChanged: {
+              alg.settings.setValue("dilation", value);
+              }
+
               Component.onCompleted: {
                 reload()
               }
@@ -187,7 +191,8 @@ AlgDialog {
           AlgComboBox {
             id: bitDepthComboBox
             textRole: "key"
-            Layout.minimumWidth: 150
+            Layout.minimumWidth: 80
+            Layout.minimumHeight: 25
 
             model: ListModel {
               id: bitDepthModel
