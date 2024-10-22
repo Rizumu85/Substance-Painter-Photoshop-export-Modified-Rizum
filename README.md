@@ -1,14 +1,18 @@
 # Photoshop Export Modified by Rizum - Substance 3D Painter plugin
 
-This plugin is orinally from the Substance 3D Painter's Photoshop Export plugin and is now modified by Rizum, I added an option to specify dilation amount when padding is turn off, and remove the color correction from the original script that was changing the original colors of the layers.
+This plugin is originally based on the Substance 3D Painter's Photoshop Export plugin and has been modified by Rizum. I added an option to specify the dilation amount when padding is turned off and removed the original color correction script, which was altering the original colors of the layers.
 
 从官方的PS插件改过来的，在设置里添加了加入像素溢出0-10的功能（需要在设置里关掉padding），原本插件的色差矫正因为反而把颜色变得糟糕，所以给改去掉了。
 
 ## Installation 安装
 
-Download or clone this project into the Substance 3D Painter plugins folder. The plugins folder can be opened from Substance 3D Painter through the menu ``Plugins/Plugins folder``. Substance 3D Painter needs to be restarted for the plugin to take effect.
+Download the zip file from the Release section and extract the folder.
+  - For SP version 10.1.0 or newer, place it in the SP installation directory: Adobe Substance 3D Painter\resources\application_plugins.
+  - For SP versions older than 10.1.0, place it in the SP installation directory: Adobe Substance 3D Painter\resources\application_plugins.
 
-从Release下载压缩包，解压后放在Substance 3D Painter的``Plugins/压缩后的文件夹``
+从 Release 下载压缩包，并解压文件夹。
+  - SP 版本为 10.1.0 或更新时，放置在 SP 安装路径的 Adobe Substance 3D Painter\resources\application_plugins 目录中。
+  - SP 版本为 10.1.0 之前的旧版本时，放置在 SP 安装路径的 Adobe Substance 3D Painter\resources\application_plugins 目录中。
 
 ## License 证书
 
