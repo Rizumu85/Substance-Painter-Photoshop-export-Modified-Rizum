@@ -1,17 +1,17 @@
-import QtQuick 2.3
-import QtQuick.Window 2.2
-import QtQuick.Dialogs 1.2
-import QtQuick.Controls 2.0
-import QtQuick.Layouts 1.3
+import QtQuick
+import QtQuick.Window
+import QtQuick.Dialogs
+import QtQuick.Controls
+import QtQuick.Layouts
 import AlgWidgets 2.0
 
 import "photoshop.js" as Photoshop
 
 AlgDialog {
-    width: 400
-    height: 800
-    minimumWidth: 400
-    minimumHeight: 300
+    width: 300
+    height: 850
+    minimumWidth: 250
+    minimumHeight: 250
     defaultButtonText: "Ok"
     title: qsTr("Select Materials/Channels to export")
 

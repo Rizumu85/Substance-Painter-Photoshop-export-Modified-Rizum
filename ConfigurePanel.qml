@@ -1,18 +1,18 @@
-import QtQuick 2.3
-import QtQuick.Window 2.2
-import QtQuick.Dialogs 1.2
-import QtQuick.Controls 2.0
-import QtQuick.Layouts 1.3
+import QtQuick
+import QtQuick.Window
+import QtQuick.Dialogs
+import QtQuick.Controls
+import QtQuick.Layouts
 import AlgWidgets 2.0
 
 AlgDialog {
   id: configureDialog
   visible: false
-  title: "configure"
+  title: qsTr("Configure")
   width: 500
-  height: defaultHeight
-  property int defaultHeight: 280
+  height: 200
   minimumWidth: 400
+  minimumHeight: 200
 
   function reload() {
     content.reload()
@@ -25,7 +25,6 @@ AlgDialog {
 		alg.settings.setValue("launchPhotoshop", launchPhotoshopCheckBox.checked);
 		alg.settings.setValue("padding", paddingCheckBox.checked);
     alg.settings.setValue("dilation", dilationSlider.value);
-
         var index = bitDepthComboBox.currentIndex
         alg.settings.setValue("bitDepth", bitDepthModel.get(index).value);
   }
@@ -52,12 +51,9 @@ AlgDialog {
 
       ColumnLayout {
         spacing: 18
+        Layout.fillWidth: true
         Layout.maximumWidth: scrollView.viewportWidth
         Layout.minimumWidth: scrollView.viewportWidth
-
-        ColumnLayout {
-          spacing: 6
-          Layout.fillWidth: true
 
           AlgLabel {
             text: qsTr("Path to Photoshop")
@@ -89,7 +85,7 @@ AlgDialog {
               text: qsTr("Set path")
               onClicked: {
                 // open the search path dialog
-                searchPathDialog.setVisible(true)
+                searchPathDialog.visible = true
               }
             }
           }
@@ -179,43 +175,41 @@ AlgDialog {
           }
         }
 
-        RowLayout {
-          spacing: 6
+      RowLayout {
+        spacing: 6
+        Layout.fillWidth: true
+
+        AlgLabel {
+          text: qsTr("Export bitdepth")
           Layout.fillWidth: true
-
-          AlgLabel {
-            text: qsTr("Export bitdepth")
-            Layout.fillWidth: true
-          }
-
-          AlgComboBox {
-            id: bitDepthComboBox
-            textRole: "key"
-            Layout.minimumWidth: 80
-            Layout.minimumHeight: 25
-
-            model: ListModel {
-              id: bitDepthModel
-              ListElement { key: "TextureSet value"; value: -1 }
-              ListElement { key: "8 bits"; value: 8 }
-              ListElement { key: "16 bits"; value: 16 }
-            }
-            function reload() {
-              var bitdepth = alg.settings.value("bitDepth", -1);
-              for (var i = 0; i < bitDepthModel.count; ++i) {
-                var current = bitDepthModel.get(i);
-                if (bitdepth === current.value) {
-                  currentIndex = i;
-                  break
-                }
-              }
-            }
-            Component.onCompleted: {
-              reload()
-            }
-          }
         }
 
+        AlgComboBox {
+          id: bitDepthComboBox
+          textRole: "key"
+          Layout.minimumWidth: 100
+          Layout.minimumHeight: 25
+
+          model: ListModel {
+            id: bitDepthModel
+            ListElement { key: qsTr("TextureSet value"); value: -1 }
+          ListElement { key: qsTr("8 bits"); value: 8 }
+          ListElement { key: qsTr("16 bits"); value: 16 }
+          }
+          function reload() {
+            var bitdepth = alg.settings.value("bitDepth", -1);
+            for (var i = 0; i < bitDepthModel.count; ++i) {
+              var current = bitDepthModel.get(i);
+              if (bitdepth === current.value) {
+                currentIndex = i;
+                break
+              }
+            }
+          }
+          Component.onCompleted: {
+            reload()
+          }
+        }
       }
     }
   }
@@ -224,9 +218,9 @@ AlgDialog {
     id: searchPathDialog
     title: qsTr("Choose a Photoshop executable file...")
     nameFilters: [ "Photoshop files (*.exe *.app)", "All files (*)" ]
-    selectedNameFilter: "Executable files (*)"
+    selectedNameFilter.index: 0
     onAccepted: {
-      path.text = alg.fileIO.urlToLocalFile(fileUrl.toString())
+      path.text = alg.fileIO.urlToLocalFile(searchPathDialog.selectedFile.toString())
     }
     onVisibleChanged: {
       if (!visible) {
