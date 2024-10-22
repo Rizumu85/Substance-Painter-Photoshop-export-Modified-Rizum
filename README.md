@@ -1,4 +1,4 @@
-# Photoshop Export Modified by Rizum - Substance 3D Painter plugin
+# Substance 3D Painter plugin for exporting to Photoshop
 
 This plugin is originally based on the Substance 3D Painter's Photoshop Export plugin and has been modified by Rizum. I added an option to specify the dilation amount when padding is turned off and removed the original color correction script, which was altering the original colors of the layers.
 
